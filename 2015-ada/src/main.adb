@@ -1,11 +1,14 @@
 with
+  Ada.Calendar,
   Ada.Command_Line,
   Ada.Strings,
   Ada.Strings.Unbounded,
   Ada.Text_IO,
-  Day_1;
+  Day_1,
+  Day_2;
 
 use
+  Ada.Calendar,
   Ada.Command_Line,
   Ada.Strings,
   Ada.Strings.Unbounded,
@@ -19,6 +22,7 @@ procedure Main is
       Argument_Key : Unbounded_String;
       Argument_Value : Integer;
    begin
+
       for I in S 'Range loop
          if S (I) = '=' then
             Split_Location := I;
@@ -62,10 +66,15 @@ procedure Main is
    type Functions_Subarray is array (1 .. 2) of Processing_Function;
    Functions_Array : array (1 .. 25) of Functions_Subarray;
 
+   Result : Integer;
+   startTime, endTime : Time;
+
 begin
 
    Functions_Array (1) (1) := Day_1.Part_1'Access;
    Functions_Array (1) (2) := Day_1.Part_2'Access;
+   Functions_Array (2) (1) := Day_2.Part_1'Access;
+   Functions_Array (2) (2) := Day_2.Part_2'Access;
 
    while I <= Argument_Count loop
 
@@ -93,6 +102,11 @@ begin
        ".txt"
    );
 
-   Put_Line (Integer'Image (Functions_Array (Day) (Part) (Input_File)));
+   startTime := Clock;
+   Result := Functions_Array (Day) (Part) (Input_File);
+   endTime := Clock;
+
+   Put_Line ("Answer: " & Integer'Image (Result));
+   Put_Line ("Calculation Time: " & Duration'Image (endTime - startTime) & " seconds");
 
 end Main;
