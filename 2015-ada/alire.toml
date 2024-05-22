@@ -1,0 +1,3 @@
+name = "aoc2015"
+description = "Advent of Code 2015 in Ada"
+version = "0.1.0-dev"
