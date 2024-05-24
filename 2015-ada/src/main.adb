@@ -107,6 +107,8 @@ begin
    endTime := Clock;
 
    Put_Line ("Answer: " & Integer'Image (Result));
-   Put_Line ("Calculation Time: " & Duration'Image (endTime - startTime) & " seconds");
+   Put_Line (
+     "Calculation Time: " & Duration'Image (endTime - startTime) & " seconds"
+   );
 
 end Main;
